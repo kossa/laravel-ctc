@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('contact/{nom?}', function ($nom = '') {
+    return "Salut $nom";
+});
+
+Route::get('user/{id}/{name}', 'PageController@user')->where(['id' => '[0-9]+', 'name' => '[a-zA-Z]+']);
