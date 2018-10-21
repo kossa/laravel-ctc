@@ -20,3 +20,9 @@ Route::get('contact/{nom?}', function ($nom = '') {
 });
 
 Route::get('user/{id}/{name}', 'PageController@user')->where(['id' => '[0-9]+', 'name' => '[a-zA-Z]+']);
+
+
+Route::get('articles', 'ArticleController@index'); // READ
+Route::get('articles/create', 'ArticleController@store');
+Route::get('articles/update', 'ArticleController@update');
+Route::get('articles/destroy', 'ArticleController@destroy');
