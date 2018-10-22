@@ -10,8 +10,9 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        // return DB::table('articles')->get();
-        return Article::all();
+        $articles = Article::all(); // Model/json
+        
+        return view('articles.index', ['articles' => $articles]);
     }
 
     public function store()
@@ -26,7 +27,7 @@ class ArticleController extends Controller
 
     public function update()
     {
-        Article::where('id', 1)
+        Article::where(['id' => 1]) //  => Article model => reponsable sur la table articles
                 ->update(['name' => 'updated']);
     }
 

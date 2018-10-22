@@ -23,6 +23,7 @@ Route::get('user/{id}/{name}', 'PageController@user')->where(['id' => '[0-9]+', 
 
 
 Route::get('articles', 'ArticleController@index'); // READ
-Route::get('articles/create', 'ArticleController@store');
-Route::get('articles/update', 'ArticleController@update');
-Route::get('articles/destroy', 'ArticleController@destroy');
+Route::get('articles/create', 'ArticleController@store'); // Create
+Route::get('articles/update', 'ArticleController@update'); // Update
+
+Route::get('articles/destroy', 'ArticleController@destroy'); // Delete
