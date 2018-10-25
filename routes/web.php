@@ -1,6 +1,5 @@
 <?php
 
-Route::resource('articles', 'ArticleController');
 Route::view('/', 'welcome');
 Auth::routes();
 
