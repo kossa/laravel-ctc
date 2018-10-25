@@ -10,19 +10,30 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::all(); // Model/json
+        $search = request('search');
+
+        $articles = Article::rechercher($search)->with('user')->paginate(20); // Model/json
+        // eager loading
         
         return view('articles.index', ['articles' => $articles]);
     }
 
-    public function store()
+    public function create()
     {
-        Article::insert([
-            'name' => 'Salut',
-            'body' => 'lorem ipsum',
-            'user_id' => 1,
-            'published_at' => Carbon::now(),
+        return view('articles.create');
+    }
+    
+    public function store(Request $request)
+    {
+        request()->validate([
+            'name'         => 'required|min:4|unique:articles',
+            'published_at' => 'required',
+            'body'         => 'required',
         ]);
+        
+        Article::create(request()->all() + ['user_id' => 1]);
+
+        return redirect()->route('articles.index');
     }
 
     public function update()
